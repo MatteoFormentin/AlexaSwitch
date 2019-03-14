@@ -6,7 +6,7 @@
 Button button;
 fauxmoESP fauxmo;
 
-const int relais_pin = D2;
+const int relais_pin = 12;
 const int led_pin = 13;
 bool relais_state = HIGH;
 
@@ -20,7 +20,6 @@ void setup()
 
   //Blink led
   button.begin(0); //D3->gpio0
-  button.addShortPressCallback(&toogleRelais);
   button.addShortPressCallback(&toogleRelais);
   button.addLongPressCallback(&factoryReset, 10000);
 
