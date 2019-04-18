@@ -4,33 +4,77 @@
 <head>
     <meta name="viewport" content="width=device-width">
     <title>Alexa Switch - WiFi Configuration</title>
-    <link rel="stylesheet" href="bootstrap.min.css">
 </head>
 
+<style>
+    h1 {
+        text-align: center;
+        color: #45a049;
+        text-transform: uppercase;
+        padding-top: 20px;
+    }
+
+    h5 {
+        text-align: center;
+    }
+
+    .center {
+        margin: auto;
+        width: 300px;
+    }
+
+    input[type=text],
+    input[type=password],
+    select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 50%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    div {
+        border-radius: 5px;
+        padding: 10px;
+    }
+</style>
+
 <body>
-    <div class="container" style="padding-top: 20px;">
-        <div class="row justify-content-sm-center">
-            <div class="col-sm-6 text-center">
-                <h1 class="text-primary">Alexa Switch</h1>
-                <h5>Configure WiFi access point connection</h5>
-            </div>
-        </div>
-        <div class="row justify-content-sm-center" id="ap_form">
-            <div class="col-sm-4">
-                <form action="/ap_conf_submit" method="GET">
-                    <div class="form-group">
-                        <label for="SSID">AP SSID</label>
-                        <input type="text" name="SSID" class="form-control" id="SSID"
-                            placeholder="Enter Access Point SSID">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">AP Password</label>
-                        <input type="password" name="password" class="form-control" id="password"
-                            placeholder="Enter Access Point Password">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100px;">CONNECT</button>
-                </form>
-            </div>
+    <div class="center">
+        <h1>alexa switch</h1>
+        <h5>Configure WiFi access point connection</h5>
+
+        <div class="" id="ap_form">
+            <form action="/ap_conf_submit" method="GET">
+                <div>
+                    <label for="SSID">AP SSID</label>
+                    <input type="text" name="SSID" id="SSID" placeholder="Enter Access Point SSID">
+                </div>
+
+                <div>
+                    <label for="password">AP Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter Access Point Password">
+                </div>
+
+                <button type="submit">CONNETTI</button>
+            </form>
         </div>
     </div>
 </body>

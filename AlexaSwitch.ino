@@ -1,6 +1,6 @@
 #include "ButtonDebounce.h"
 #include "fauxmoESP.h"
- 
+
 #define HOSTNAME "AlexaSwitch"
 
 Button button;
@@ -17,18 +17,19 @@ void setup()
   pinMode(relais_pin, OUTPUT);
   pinMode(led_pin, OUTPUT);
   digitalWrite(relais_pin, relais_state);
+  digitalWrite(led_pin, relais_state);
 
-  //Blink led
+
   button.begin(0); //D3->gpio0
   button.addShortPressCallback(&toogleRelais);
   button.addLongPressCallback(&factoryReset, 10000);
 
   setupWiFi();
+  setupWebInterface();
   if (!getApMode())
   {
     initAlexa();
   }
-  
 }
 
 void loop()
@@ -45,6 +46,7 @@ void toogleRelais()
 {
   relais_state = !relais_state;
   digitalWrite(relais_pin, relais_state);
+  digitalWrite(led_pin, relais_state);
 }
 
 void initAlexa()
