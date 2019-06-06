@@ -8,7 +8,7 @@ fauxmoESP fauxmo;
 
 const int relais_pin = 12;
 const int led_pin = 13;
-bool relais_state = HIGH;
+bool relais_state = LOW;
 
 void setup()
 {
@@ -17,7 +17,7 @@ void setup()
   pinMode(relais_pin, OUTPUT);
   pinMode(led_pin, OUTPUT);
   digitalWrite(relais_pin, relais_state);
-  digitalWrite(led_pin, relais_state);
+  digitalWrite(led_pin, !relais_state);
 
 
   button.begin(0); //D3->gpio0
@@ -46,7 +46,7 @@ void toogleRelais()
 {
   relais_state = !relais_state;
   digitalWrite(relais_pin, relais_state);
-  digitalWrite(led_pin, relais_state);
+  digitalWrite(led_pin, !relais_state);
 }
 
 void initAlexa()
@@ -60,13 +60,17 @@ void initAlexa()
     {
       if (state == 1)
       {
-        digitalWrite(relais_pin, LOW);
+        relais_state = HIGH;
       }
       else
       {
-        digitalWrite(relais_pin, HIGH);
+        relais_state = LOW;
       }
+
+      digitalWrite(relais_pin, relais_state);
+      digitalWrite(led_pin, !relais_state);
     }
   });
+
   Serial.println("Alexa init ok");
 }

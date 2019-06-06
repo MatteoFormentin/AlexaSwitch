@@ -45,13 +45,6 @@ void setupWiFi()
       Serial.println(F("WiFi connected"));
       Serial.println(F("IP address: "));
       Serial.println(WiFi.localIP());
-      digitalWrite(led_pin, HIGH);
-      delay(100);
-      digitalWrite(led_pin, LOW);
-      delay(100);
-      digitalWrite(led_pin, HIGH);
-      delay(100);
-      digitalWrite(led_pin, LOW);
     }
   }
   else
