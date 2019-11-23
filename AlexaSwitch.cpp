@@ -10,6 +10,8 @@ const int relais_pin = 12;
 const int led_pin = 13;
 bool relais_state = LOW;
 
+unsigned long int start_time;
+
 void setup()
 {
   Serial.begin(9600);
@@ -18,7 +20,6 @@ void setup()
   pinMode(led_pin, OUTPUT);
   digitalWrite(relais_pin, relais_state);
   digitalWrite(led_pin, !relais_state);
-
 
   button.begin(0); //D3->gpio0
   button.addShortPressCallback(&toogleRelais);
@@ -30,16 +31,32 @@ void setup()
   {
     initAlexa();
   }
+
+  start_time = millis();
 }
 
 void loop()
 {
+  if (getApMode())
+  {
+    if (millis() - start_time > 36000)
+    {
+      ESP.restart();
+    }
+  } else {
+    start_time = millis();
+  }
+
   if (!getApMode())
   {
     fauxmo.handle();
   }
   button.buttonLoop();
   handleWebInterface();
+  if (!checkWiFi())
+  {
+    setupWiFi();
+  }
 }
 
 void toogleRelais()

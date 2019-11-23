@@ -64,6 +64,14 @@ void setupWiFi()
   delay(100);
 }
 
+bool checkWiFi(){
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    return false;
+  }
+  return true;
+}
+
 void handleWebInterface()
 {
   webInterface.handleClient();
